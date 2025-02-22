@@ -69,10 +69,11 @@ class ProviderAdapter(
         } else {
             holder.binding.endView.visibility = View.VISIBLE
             holder.binding.elapsedView.visibility = View.VISIBLE
-            holder.binding.update = View.OnClickListener {
-                state.updating = true
-                requestUpdate(position, state.provider)
-            }
+            holder.binding.update =
+                View.OnClickListener {
+                    state.updating = true
+                    requestUpdate(position, state.provider)
+                }
         }
     }
 
