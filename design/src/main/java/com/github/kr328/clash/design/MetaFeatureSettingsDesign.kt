@@ -115,9 +115,61 @@ class MetaFeatureSettingsDesign(
                 ) {
                 }
 
-                category(R.string.sniffer_setting)
+            editableTextList(
+                value = configuration.sniffer.sniff.http::ports,
+                adapter = TextAdapter.String,
+                title = R.string.sniff_http_ports,
+                placeholder = R.string.dont_modify,
+                configure = snifferDependencies::add,
+            )
 
-                val snifferDependencies: MutableList<Preference> = mutableListOf()
+            selectableList(
+                value = configuration.sniffer.sniff.http::overrideDestination,
+                values = booleanValues,
+                valuesText = booleanValuesText,
+                title = R.string.sniff_http_override_destination,
+                configure = snifferDependencies::add,
+            )
+
+            editableTextList(
+                value = configuration.sniffer.sniff.tls::ports,
+                adapter = TextAdapter.String,
+                title = R.string.sniff_tls_ports,
+                placeholder = R.string.dont_modify,
+                configure = snifferDependencies::add,
+            )
+
+            selectableList(
+                value = configuration.sniffer.sniff.tls::overrideDestination,
+                values = booleanValues,
+                valuesText = booleanValuesText,
+                title = R.string.sniff_tls_override_destination,
+                configure = snifferDependencies::add,
+            )
+
+            editableTextList(
+                value = configuration.sniffer.sniff.quic::ports,
+                adapter = TextAdapter.String,
+                title = R.string.sniff_quic_ports,
+                placeholder = R.string.dont_modify,
+                configure = snifferDependencies::add,
+            )
+
+            selectableList(
+                value = configuration.sniffer.sniff.quic::overrideDestination,
+                values = booleanValues,
+                valuesText = booleanValuesText,
+                title = R.string.sniff_quic_override_destination,
+                configure = snifferDependencies::add,
+            )
+
+            selectableList(
+                value = configuration.sniffer::forceDnsMapping,
+                values = booleanValues,
+                valuesText = booleanValuesText,
+                title = R.string.force_dns_mapping,
+                configure = snifferDependencies::add,
+            )
 
                 val sniffer =
                     selectableList(
@@ -174,13 +226,21 @@ class MetaFeatureSettingsDesign(
                     configure = snifferDependencies::add,
                 )
 
-                selectableList(
-                    value = configuration.sniffer::overrideDestination,
-                    values = booleanValues,
-                    valuesText = booleanValuesText,
-                    title = R.string.override_destination,
-                    configure = snifferDependencies::add,
-                )
+            editableTextList(
+                value = configuration.sniffer::skipSrcAddress,
+                adapter = TextAdapter.String,
+                title = R.string.skip_src_address,
+                placeholder = R.string.dont_modify,
+                configure = snifferDependencies::add,
+            )
+
+            editableTextList(
+                value = configuration.sniffer::skipDstAddress,
+                adapter = TextAdapter.String,
+                title = R.string.skip_dst_address,
+                placeholder = R.string.dont_modify,
+                configure = snifferDependencies::add,
+            )
 
                 editableTextList(
                     value = configuration.sniffer::forceDomain,

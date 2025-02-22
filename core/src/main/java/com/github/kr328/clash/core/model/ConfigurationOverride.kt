@@ -142,8 +142,10 @@ data class ConfigurationOverride(
     data class Sniffer(
         @SerialName("enable")
         var enable: Boolean? = null,
-        @SerialName("sniffing")
-        var sniffing: List<String>? = null,
+
+        @SerialName("sniff")
+        var sniff: Sniff = Sniff(),
+
         @SerialName("force-dns-mapping")
         var forceDnsMapping: Boolean? = null,
         @SerialName("parse-pure-ip")
@@ -154,8 +156,12 @@ data class ConfigurationOverride(
         var forceDomain: List<String>? = null,
         @SerialName("skip-domain")
         var skipDomain: List<String>? = null,
-        @SerialName("port-whitelist")
-        var portWhitelist: List<String>? = null,
+
+        @SerialName("skip-src-address")
+        var skipSrcAddress: List<String>? = null,
+
+        @SerialName("skip-dst-address")
+        var skipDstAddress: List<String>? = null,
     )
 
     @Serializable
@@ -176,10 +182,28 @@ data class ConfigurationOverride(
         var allowPrivateNetwork: Boolean? = null,
     )
 
-    override fun writeToParcel(
-        parcel: Parcel,
-        flags: Int,
-    ) {
+    @Serializable
+    data class Sniff(
+        @SerialName("HTTP")
+        var http: ProtocolConig = ProtocolConig(),
+
+        @SerialName("TLS")
+        var tls: ProtocolConig = ProtocolConig(),
+
+        @SerialName("QUIC")
+        var quic: ProtocolConig = ProtocolConig(),
+    )
+
+    @Serializable
+    data class ProtocolConig(
+        @SerialName("ports")
+        var ports: List<String>? = null,
+
+        @SerialName("override-destination")
+        var overrideDestination: Boolean? = null,
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
         Parcelizer.encodeToParcel(serializer(), parcel, this)
     }
 
