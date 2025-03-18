@@ -47,7 +47,7 @@ object Clash {
     fun queryTrafficTotal(): Traffic = Bridge.nativeQueryTrafficTotal()
 
     fun notifyDnsChanged(dns: List<String>) {
-        Bridge.nativeNotifyDnsChanged(dns.joinToString(separator = ","))
+        Bridge.nativeNotifyDnsChanged(dns.toSet().joinToString(separator = ","))
     }
 
     fun notifyTimeZoneChanged(

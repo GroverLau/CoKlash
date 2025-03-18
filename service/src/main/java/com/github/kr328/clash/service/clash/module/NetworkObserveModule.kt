@@ -6,7 +6,7 @@ import android.os.Build
 import androidx.core.content.getSystemService
 import com.github.kr328.clash.common.log.Log
 import com.github.kr328.clash.core.Clash
-import com.github.kr328.clash.service.util.resolvePrimaryDns
+import com.github.kr328.clash.service.util.resolveDns
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.trySendBlocking
@@ -82,10 +82,9 @@ class NetworkObserveModule(
                         }
                     }
 
-                val dns =
-                    networks.mapNotNull {
-                        connectivity.resolvePrimaryDns(it)
-                    }
+                val dns = networks.flatMap { network ->
+                    connectivity?.resolveDns(network) ?: emptyList()
+                }
 
                 Clash.notifyDnsChanged(dns)
 
