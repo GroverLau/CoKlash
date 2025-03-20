@@ -29,8 +29,8 @@ subprojects {
             targetSdk = 35
             buildToolsVersion = "35.0.1"
 
-            versionName = "3.0.0-alpha04"
-            versionCode = "03000004".toInt()
+            versionName = "3.0.0-alpha05"
+            versionCode = "03000005".toInt()
 
             resValue("string", "release_name", "v$versionName")
             resValue("integer", "release_code", "$versionCode")
