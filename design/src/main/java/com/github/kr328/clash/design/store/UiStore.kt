@@ -28,6 +28,11 @@ class UiStore(
         values = DarkMode.values(),
     )
 
+    var hideAppIcon: Boolean by store.boolean(
+        key = "hide_app_icon",
+        defaultValue = false,
+    )
+
     var proxyExcludeNotSelectable by store.boolean(
         key = "proxy_exclude_not_selectable",
         defaultValue = false,

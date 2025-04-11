@@ -15,6 +15,7 @@ fun InetAddress.asSocketAddressText(port: Int): String =
 
 private const val INT16SZ = 2
 private const val INADDRSZ = 16
+
 private fun numericToTextFormat(address: Inet6Address): String {
     var src = address.getAddress()
     val sb = StringBuilder(39)

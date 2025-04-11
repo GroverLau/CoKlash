@@ -82,9 +82,10 @@ class NetworkObserveModule(
                         }
                     }
 
-                val dns = networks.flatMap { network ->
-                    connectivity?.resolveDns(network) ?: emptyList()
-                }
+                val dns =
+                    networks.flatMap { network ->
+                        connectivity?.resolveDns(network) ?: emptyList()
+                    }
 
                 Clash.notifyDnsChanged(dns)
 

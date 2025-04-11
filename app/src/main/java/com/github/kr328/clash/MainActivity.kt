@@ -163,3 +163,5 @@ class MainActivity : BaseActivity<MainDesign>() {
             packageManager.getPackageInfoCompat(packageName, 0).versionName + "\n" + Bridge.nativeCoreVersion().replace("_", "-")
         }
 }
+
+val mainActivityAlias = "${MainActivity::class.java.name}Alias"
