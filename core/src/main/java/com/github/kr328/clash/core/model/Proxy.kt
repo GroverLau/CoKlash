@@ -39,7 +39,7 @@ data class Proxy(
         Ssh(false),
         Mieru(false),
         AnyTLS(false),
-
+        Cns(false),
         Relay(true),
         Selector(true),
         Fallback(true),
